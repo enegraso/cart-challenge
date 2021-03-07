@@ -16,6 +16,7 @@ fetch("https://fakestoreapi.com/products?limit=10")
       var idboton = "boton"
        boton.innerHTML = " add "
        boton.onclick = function(){
+        alert("Elemento agregado")
          cart.push(product) 
       };     
       // end add by me
@@ -63,7 +64,8 @@ document.querySelector(".cart").onclick = function () {
     delbtn.setAttribute("id",i)
     delbtn.onclick = function(){
       var deleted = cart.splice(this.id,1)
-      console.log("deleted" + deleted + " " + this.id)
+      modal.style.display = "none"
+      alert("Elemento eliminado")
     }
     var para = document.createElement("span")
     para.innerText += cart[i].price + " " + cart[i].title
@@ -76,6 +78,7 @@ document.querySelector(".cart").onclick = function () {
   }
   prieline.innerHTML = "<br><br>Total carro $ " + totprice
   ulcart.appendChild(prieline)
+
   // end by me
 
   modal.style.display === "none"
