@@ -9,7 +9,17 @@ fetch("https://fakestoreapi.com/products?limit=10")
       const title = document.createElement("h6");
       const img = document.createElement("img");
       const price = document.createElement("span");
-
+      
+      
+      // begin add by me
+      var boton  = document.createElement("button");
+      var idboton = "boton"
+       boton.innerHTML = " add "
+       boton.onclick = function(){
+         cart.push(product) 
+      };     
+      // end add by me
+      
       title.innerText = product.title;
       img.src = product.image;
       price.innerText = "$" + product.price;
@@ -18,6 +28,9 @@ fetch("https://fakestoreapi.com/products?limit=10")
       li.appendChild(img);
       li.appendChild(price);
 
+      li.appendChild(boton) // by me
+      
+
       ul.appendChild(li);
     });
   });
@@ -25,6 +38,8 @@ fetch("https://fakestoreapi.com/products?limit=10")
 const showCart = () => {
   cart.map((item) => {
     document.querySelector(".modalList").appendChild(item);
+
+
   });
 };
 
@@ -34,7 +49,37 @@ document.querySelector(".close").onclick = function () {
 
 document.querySelector(".cart").onclick = function () {
   const modal = document.querySelector(".modal");
+  
+  // begin by me
+
+  var ulcart = document.querySelector(".modalLista");
+  var prieline = document.createElement("span")
+  var totprice = 0
+  var index = 0
+  ulcart.innerHTML = "<br/><br/>"
+  for (i=0; i < cart.length; i++) {
+    var delbtn = document.createElement("button")
+    delbtn.innerText = " del "
+    delbtn.setAttribute("id",i)
+    delbtn.onclick = function(){
+      var deleted = cart.splice(this.id,1)
+      console.log("deleted" + deleted + " " + this.id)
+    }
+    var para = document.createElement("span")
+    para.innerText += cart[i].price + " " + cart[i].title
+    var lica = document.createElement("li")
+    lica.appendChild(para)
+    lica.appendChild(delbtn) 
+    ulcart.appendChild(lica) 
+    index++
+    totprice += cart[i].price
+  }
+  prieline.innerHTML = "<br><br>Total carro $ " + totprice
+  ulcart.appendChild(prieline)
+  // end by me
+
   modal.style.display === "none"
     ? (modal.style.display = "flex")
     : (modal.style.display = "none");
 };
+
