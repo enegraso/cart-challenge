@@ -59,7 +59,7 @@ document.querySelector(".cart").onclick = function () {
   ulcart.innerHTML = "<br/><br/>"
   for (i=0; i < cart.length; i++) {
     var delbtn = document.createElement("button")
-    delbtn.innerText = " del "
+    delbtn.innerText = " x "
     delbtn.setAttribute("id",i)
     delbtn.onclick = function(){
       var deleted = cart.splice(this.id,1)
